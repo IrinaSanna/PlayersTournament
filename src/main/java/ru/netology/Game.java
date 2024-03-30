@@ -5,25 +5,24 @@ import java.util.List;
 
 
 public class Game {
-    private ArrayList<Player> players = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
 
-    public Player register(Player player) { //  метод регистрации игрока
+    public void register(Player player) { //  метод регистрации игрока
         players.add(player);
-        return player;
     }
 
-    private int round(String playerName1, String playerName2) {
+    public int round(String playerName1, String playerName2) { // метод проверки регистрации и итогов соревнования
         Player player1 = findByName(playerName1);
         Player player2 = findByName(playerName2);
         if (player1 == null) {
             throw new NotRegisteredException(
-                    "Игрок: " + playerName1 + "не зарегистрирован"
+                    "Игрок " + playerName1 + " не зарегистрирован"
             );
         }
 
         if (player2 == null) {
             throw new NotRegisteredException(
-                    "Игрок: " + playerName2 + "не зарегистрирован"
+                    "Игрок " + playerName2 + " не зарегистрирован"
             );
         }
 
@@ -35,7 +34,6 @@ public class Game {
             return 0;
         }
     }
-
 
     public Player findByName(String names) { // поиск информации об игроке
         for (Player player : players) {
